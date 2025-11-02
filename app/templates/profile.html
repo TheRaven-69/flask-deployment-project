@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h3>Мій профіль</h3>
+          <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">{{ form.full_name.label }} {{ form.full_name(class_='form-control', value=profile.full_name) }}</div>
+            <div class="mb-3">{{ form.bio.label }} {{ form.bio(class_='form-control', value=profile.bio) }}</div>
+            <div class="mb-3">{{ form.avatar.label }} {{ form.avatar(class_='form-control') }}</div>
+            <div>{{ form.submit(class_='btn btn-success') }}</div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center">
+          {% if profile.avatar %}
+            <img src="{{ profile.avatar }}" alt="avatar" class="img-fluid rounded-circle mb-2" style="max-width:120px">
+          {% else %}
+            <div class="rounded-circle bg-secondary text-white d-inline-block" style="width:120px;height:120px;line-height:120px;">No Image</div>
+          {% endif %}
+          <h5 class="mt-2">{{ current_user.username }}</h5>
+          <p class="text-muted small">{{ current_user.email }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

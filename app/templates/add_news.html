@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Додати новину</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">{{ form.title.label }} {{ form.title(class="form-control") }}</div>
+        <div class="mb-3">{{ form.summary.label }} {{ form.summary(class="form-control") }}</div>
+        <div class="mb-3">{{ form.content.label }} {{ form.content(class="form-control", rows=5) }}</div>
+        <div class="mb-3">{{ form.image_url.label }} {{ form.image_url(class="form-control") }}</div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+{% endblock %}

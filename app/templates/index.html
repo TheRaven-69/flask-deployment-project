@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="p-4 bg-white rounded shadow-sm">
+    <h1>Flask Deployment Demo</h1>
+    <p>Цей додаток використовується для експериментів з розгортанням: Docker, VM, PaaS та ін.</p>
+    <a class="btn btn-primary" href="{{ url_for('main.register') }}">Зареєструватися</a>
+    <a class="btn btn-secondary" href="{{ url_for('main.login') }}">Увійти</a>
+  </div>
+  {% for news in news_list %}
+<div class="card mb-3 shadow-sm">
+  <img src="{{ news.image_url or url_for('static', filename='default.jpg') }}" class="card-img-top" alt="{{ news.title }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ news.title }}</h5>
+    <p class="card-text">{{ news.summary }}</p>
+        <a href="{{ url_for('main.news_detail', news_id=news.id) }}" class="btn btn-outline-primary">Докладніше</a>
+  </div>
+</div>
+{% endfor %}
+{% if current_user.is_admin %}
+<a href="{{ url_for('main.add_news') }}" class="btn btn-primary">Додати новину</a>
+{% endif %}
+{% endblock %}
